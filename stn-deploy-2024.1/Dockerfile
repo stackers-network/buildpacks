@@ -6,7 +6,8 @@ RUN dnf -y update && \
     rm -rf /var/cache/yum
 
 # kolla-ansible has specific dependencies on the ansible versions
-RUN pip install --no-cache-dir --upgrade 'ansible-core>=2.15,<2.16.99' && \
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir --upgrade 'ansible-core>=2.15,<2.16.99' && \
     pip install --no-cache-dir openstackclient
 
 # checkout kolla-ansible
