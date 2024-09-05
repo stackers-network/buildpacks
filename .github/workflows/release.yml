@@ -15,7 +15,7 @@ jobs:
       matrix:
         container:
           - stn-deploy-2024.1
-          - stn-deploy-master
+#          - stn-deploy-master
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
