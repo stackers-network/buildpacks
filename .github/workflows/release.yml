@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '*/Dockerfile'
-      - '*/VERSION'
+#    paths:
+#      - '*/Dockerfile'
+#      - '*/VERSION'
 
 jobs:
   build-and-push:
