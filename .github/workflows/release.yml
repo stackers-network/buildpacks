@@ -32,7 +32,7 @@ jobs:
 
       - name: Read VERSION file
         id: version
-        run: echo "::set-output name=version::$(cat ${{ matrix.container }}/VERSION)"
+        run: echo "version=$(cat ${{ matrix.container }}/VERSION)" >> $GITHUB_ENV
       
       - name: Build and push Docker image with version
         uses: docker/build-push-action@v2
@@ -41,5 +41,5 @@ jobs:
           file: ${{ matrix.container }}/Dockerfile
           push: true
           tags: |
-            ghcr.io/stackers-network/${{ matrix.container }}:${{ steps.version.outputs.version }}
+            ghcr.io/stackers-network/${{ matrix.container }}:${{ env.version }}
             ghcr.io/stackers-network/${{ matrix.container }}:latest
