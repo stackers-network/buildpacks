@@ -1,14 +1,14 @@
-FROM rockylinux:9.3
+FROM rockylinux/rockylinux:9
 
 RUN dnf -y update && \
-    dnf -y install gcc git iputils jq libffi-devel openssl-devel perl-Digest-SHA procps-ng python3-devel python3-libselinux rsync sshpass unzip wget which && \
+    dnf -y install gcc git iputils jq libffi-devel openssl-devel perl-Digest-SHA procps-ng python3.12 python3.12-devel python3.12-pip python3-libselinux rsync sshpass unzip wget which && \
     dnf clean all && \
     rm -rf /var/cache/yum
 
 # kolla-ansible has specific dependencies on the ansible versions
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir --upgrade 'ansible-core>=2.15,<2.16.99' && \
-    pip install --no-cache-dir openstackclient
+RUN pip3.12 install --no-cache-dir --upgrade pip && \
+    pip3.12 install --no-cache-dir --upgrade 'ansible-core>=2.15,<2.16.99' && \
+    pip3.12 install --no-cache-dir openstackclient
 
 # checkout kolla-ansible
 RUN git clone -b stable/2024.1 https://opendev.org/openstack/kolla-ansible.git /tmp/kolla-ansible
@@ -18,7 +18,7 @@ ADD patches /tmp/patches
 RUN cd /tmp/kolla-ansible && git apply --allow-empty -v /tmp/patches/*.patch
 
 # install patched kolla-ansible
-RUN pip install --no-cache-dir /tmp/kolla-ansible
+RUN pip3.12 install --no-cache-dir /tmp/kolla-ansible
 
 # create config file dirs
 RUN mkdir -p /etc/kolla && \
