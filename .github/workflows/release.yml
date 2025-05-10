@@ -14,6 +14,7 @@ jobs:
     strategy:
       matrix:
         container:
+          - stn-deploy-2025.1
           - stn-deploy-2024.2
           - stn-deploy-2024.1
 #          - stn-deploy-master
