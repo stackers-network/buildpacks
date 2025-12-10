@@ -1,4 +1,4 @@
-FROM rockylinux/rockylinux:9
+FROM rockylinux/rockylinux:10
 
 RUN dnf -y update && \
     dnf -y install gcc git iputils jq libffi-devel openssl-devel perl-Digest-SHA procps-ng python3.12 python3.12-devel python3.12-pip python3-libselinux rsync sshpass unzip wget which && \
