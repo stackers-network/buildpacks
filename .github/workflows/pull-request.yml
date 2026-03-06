@@ -30,7 +30,7 @@ jobs:
         run: echo "::set-output name=version::$(cat ${{ matrix.container }}/VERSION)"
       
       - name: Build Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ${{ matrix.container }}
           file: ${{ matrix.container }}/Dockerfile
